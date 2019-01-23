@@ -1,4 +1,4 @@
-var movieTitles = [
+var topics = [
     "Home Alone",
     "Alice in Wonderland",
     "Lord of the Rings",
@@ -8,24 +8,38 @@ var movieTitles = [
     "Toy Story"
 ];
 
-// This function will take care of dynamicaly generating buttons.
-function generateBtns() {
+// This function will take care of dynamically generating buttons.
+function generateButtons() {
 
-    // To avoid having repeasted buttons.
+    // To avoid having repeated buttons.
     // Adding new movie buttons.
-    $("#moviesBtns").empty();
-
-    for (i=0; i < movieTitles.length; i++){
+    $("#movies-buttons").empty();
+    
+    for (i=0; i < topics.length; i++){
 
         // Buttons for each item in array will be generated. <button>...</button>
-        var b = $("<button>");
+        var a = $("<button>");
 
         a.addClass("movie");
 
         // We apply the attribute data-name='...' to each item in the array.
-        a.attr("data-name", movies[i]);
-        
-        $("movieBtns").append(a);
+        a.attr("data-name", topics[i]);
+
+        a.text(topics[i]);
+        $("#movies-buttons").append(a);
     }
 }
 
+// When search button is pressed ...
+$("#searchButton").on("click", function(event) {
+    
+    event.preventDefault();
+    
+    var movie = $("#search-box").val().trim();
+    
+    topics.push(movie);
+    
+    generateButtons();
+});
+
+generateButtons();
