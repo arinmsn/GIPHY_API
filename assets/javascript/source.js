@@ -1,3 +1,41 @@
+/*
+
+### Bonus Goals
+
+X-------1. Ensure your app is fully mobile responsive.
+BUT....search-box is too small in mobile.
+
+2. Allow users to request additional gifs to be added to the page.
+   * Each request should ADD 10 gifs to the page, NOT overwrite the existing gifs.
+
+3. List additional metadata (title, tags, etc) for each gif in a clean and readable format.
+
+4. Include a 1-click download button for each gif, this should work across device types.
+
+5. Integrate this search with additional APIs such as OMDB, or Bands in Town. Be creative and 
+build something you are proud to showcase in your portfolio
+
+6. Allow users to add their favorite gifs to a `favorites` section.
+   * This should persist even when they select or add a new topic.
+   * If you are looking for a major challenge, look into making this
+   * section persist even when the page is reloaded(via localStorage or cookies).
+
+
+
+
+7. If user types empty string, it prints empty key!
+X-----It does say in message that the empty key cannot return any GIFs.
+
+8. First rating text .. does it show double?? Does it has to do with CSS?
+
+
+
+*/
+
+
+
+
+
 var topics = [
     "Home Alone",
     "Alice in Wonderland",
@@ -58,10 +96,26 @@ $(document).ready(function () {
 
         topics.push(movie);
         console.log("Button that was just created: " + movie);
+        
+
+        // document.body.onkeyup = function(e){
+        //     if((e.keyCode == 32 || e.keyCode == 13)) && movie !== null {
+        //         alert("You pressed either this or that!!")};
+        //     }
+        // }
+        // if (movie === null) {
+        //     alert("Give another keyword a try! There is not GIFy for that!");
+        // }
         console.log(topics);
 
         generateButtons();
     });
+
+    document.body.onkeyup = function(e){
+        if(e.keyCode == 13){
+            ;
+        }
+    }
 
     // Function showing the GIFs
     function showGifs() {
@@ -77,14 +131,15 @@ $(document).ready(function () {
         }).done(function (response) {   ///or .then
                 clearSearchBox();
                 var results = response.data;
-                if (results == ""){
-                    alert("Give another keyword a try! There is not GIFy for that!");
-                }
+                // if (results == "" || movie == "") {
+                //     alert("Give another keyword a try! There is not GIFy for that!");
+                // }
                 for (j = 0; j < results.length; j++) { 
                     var rating = results[j].rating;
                     var gifDiv = $("<div>");
-                    var gifRating = $("<p><strong>").text("Rating: " + rating);
+                    var gifRating = $("<p>").text("Rating: " + rating);
                     gifDiv.append(gifRating);
+                    
 
                     var movieImage = $("<img>");
                     movieImage.attr("src", results[j].images.fixed_height_still.url);  // <--- f_h_small_still.url
@@ -94,6 +149,7 @@ $(document).ready(function () {
                     movieImage.addClass("image");
                     
                     gifDiv.append(movieImage);
+
                     $("#gifsGoHere").prepend(gifDiv);
                 } // End of 'for' loop
 
