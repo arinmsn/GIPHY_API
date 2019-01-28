@@ -6,6 +6,10 @@ button {
     margin: 10px;
 }
 
+/* .disabled {
+    pointer-events: none
+} */
+
 #logo-film {
     margin-top: 10px;
     width: 2em;
@@ -17,8 +21,28 @@ button {
     margin-right: 10px;
 }
 
+// Images - Start
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 30%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }
+// Images - End
+
 #gifsGoHere button {
   margin: 10px;
+  padding: 10px;
   margin-bottom: 20px;
 }
 
@@ -29,6 +53,11 @@ button {
 #gifsGoHere {
     display: flex;
     flex-wrap: wrap;
+    margin: auto 20px;
+}
+
+.dnldButton {
+    float: right;
 }
 
 @media only screen and (min-width: 600px) {

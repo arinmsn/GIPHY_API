@@ -10,7 +10,8 @@ BUT....search-box is too small in mobile.
 
 3. List additional metadata (title, tags, etc) for each gif in a clean and readable format.
 
-4. Include a 1-click download button for each gif, this should work across device types.
+X--------4. Include a 1-click download button for each gif, this should work across device types.
+Just add download functionality to download the image.
 
 5. Integrate this search with additional APIs such as OMDB, or Bands in Town. Be creative and 
 build something you are proud to showcase in your portfolio
@@ -28,7 +29,7 @@ X-----It does say in message that the empty key cannot return any GIFs.
 
 8. First rating text .. does it show double?? Does it has to do with CSS?
 
-
+9. README.md (MARKUP)
 
 */
 
@@ -90,10 +91,17 @@ $(document).ready(function () {
     // When search button is pressed ...
     $("#searchButton").on("click", function (event) {
 
+        // if (movie === null) {
+        //     $("#search-box").addClass()
+        // } else {
+        //     return;
+        // }
+
         event.preventDefault();
-
+        
         var movie = $("#search-box").val().trim();
-
+         
+        
         topics.push(movie);
         console.log("Button that was just created: " + movie);
         
@@ -136,9 +144,16 @@ $(document).ready(function () {
                 // }
                 for (j = 0; j < results.length; j++) { 
                     var rating = results[j].rating;
-                    var gifDiv = $("<div>");
+                    var gifDiv = $("<div style='border: thin solid black'>");
                     var gifRating = $("<p>").text("Rating: " + rating);
+
+                    // Download button
+                    var dnldButton = $("<button type='button' class='btn btn-primary btn-sm dnldButton'>Download</button>");
+                    
+                    // Download Button End 
+
                     gifDiv.append(gifRating);
+                    gifRating.append(dnldButton);
                     
 
                     var movieImage = $("<img>");
@@ -159,6 +174,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".movie", showGifs);  // <--- Not working
+    
     $(document).on("click", ".image", function() {
         // var that = $(this);
         var state = $(this).attr('data-state');
@@ -172,8 +188,11 @@ $(document).ready(function () {
         }
     });
 
+
     generateButtons();  // <----- Need to locally define it! Not working
 
+
+    // var dnldAction = <a href="/images/myw3schoolsimage.jpg" download>
     // $(document)on("click", ".movie" , function(event) {
     //     ///           .............
     // });
