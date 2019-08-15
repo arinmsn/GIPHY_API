@@ -30,12 +30,12 @@ button {
   
   /* Create two equal columns that sits next to each other */
   .column {
-    flex: 30%;
+    flex: 20%;
     padding: 0 4px;
   }
   
   .column img {
-    margin-top: 8px;
+    margin-top: 5px;
     vertical-align: middle;
   }
 // Images - End
@@ -52,8 +52,10 @@ button {
 
 #gifsGoHere {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    margin: auto 20px;
+    justify-content: center;
+    margin: 5px 5px;
 }
 
 .dnldButton {
